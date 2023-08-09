@@ -46,7 +46,7 @@ def provide_file(kind, index):
 
     # otherwise, download it using the public CERNBox url
     quote = six.moves.urllib.parse.quote
-    cernbox_path = specs.cernbox_dl_pattern.format(quote("/", safe=""), quote(file_name, safe=""))
+    cernbox_path = specs.cernbox_dl_pattern.format(quote(file_name, safe=""))
     util.download(cernbox_path, file_path)
     return file_path
 
