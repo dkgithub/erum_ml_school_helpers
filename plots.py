@@ -13,7 +13,6 @@ def plot_hist(
     names=None,
     xlabel=None,
     ylabel="Entries",
-    yLog=False,
     filename=None,
     legend_loc="upper center",
     **kwargs,
@@ -41,8 +40,6 @@ def plot_hist(
         ax.set_xlabel(xlabel)
     if ylabel:
         ax.set_ylabel(ylabel)
-    if yLog:
-        ax.set_yscale('log')
     if filename:
         fig.savefig(filename)
 
