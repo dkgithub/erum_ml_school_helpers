@@ -84,3 +84,56 @@ def plot_roc(labels, predictions, names=None, xlim=(0.01, 1.0), ylim=(1.0, 1.0e2
     legend.get_frame().set_linewidth(0.0)
 
     return fig
+
+class history:
+    """
+    DK history object\
+    L=history('loss','val_loss','acc','val_acc','')
+    L=history()
+    """
+    def __init__(self,*names):
+        self.history={}
+        if len(names)==0:
+            #default set
+            names=('loss','val_loss','acc','val_acc','')
+        self.name=names[-1]
+        for name in names[:-1]:
+            self.history[name]=[]#a list of values
+            #print(name)
+    def append(self,*values):
+        if len(values)!=len(self.history):
+            print('not enough values')
+        for i,name in enumerate(self.history):
+            self.history[name].append(values[i])
+
+#L=history('loss','val_loss','acc','val_acc','')
+#L=history()
+#L.history['loss'].append(1)
+#L.append(1,2,3,4)
+#print(L.history['loss'],L.history['acc'],L.name,L)
+def plotLearningCurves(*histObjs):
+    """This function processes all histories given in the tuple.
+    Left losses, right accuracies
+    """
+    # too many plots
+    if len(histObjs)>10:
+        print('Too many objects!')
+        return
+    # missing names
+    for histObj in histObjs:
+        if not hasattr(histObj, 'name'): histObj.name='?'
+    names=[]
+    # loss plot
+    plt.figure(figsize=(10,5))
+    plt.subplot(1,2,1)
+    # loop through arguments
+    for histObj in histObjs:
+        plt.plot(histObj.history['loss'])
+        names.append('train '+histObj.name)
+        plt.plot(histObj.history['val_loss'])
+        names.append('validation '+histObj.name)
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(names, loc='upper right')
+
