@@ -6,7 +6,7 @@ Helpful plotting functions.
 
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
-
+import numpy as np
 
 def plot_hist(
     arr,
