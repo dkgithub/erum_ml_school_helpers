@@ -108,12 +108,13 @@ class history:
         for i,k in enumerate(self.history.keys()):
             self.history[k].append(values[i])
         return i+1
-    def plotLearningCurves(self):
+    def plotLearningCurves(self,start=0,stop=None):
+    	if stop==None:stop=len(self.history['loss'])
         plt.figure(figsize=(10,5))
         # losses
         plt.subplot(1,2,1)
-        plt.plot(self.history['loss'])
-        plt.plot(self.history['val_loss'])
+        plt.plot(self.history['loss'][start:stop])
+        plt.plot(self.history['val_loss'][start:stop])
         plt.title('model loss')
         plt.ylabel('loss')
         plt.xlabel('epoch')
