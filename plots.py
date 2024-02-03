@@ -109,7 +109,7 @@ class history:
             self.history[k].append(values[i])
         return i+1
     def plotLearningCurves(self,start=0,stop=None):
-    	if stop==None:stop=len(self.history['loss'])
+        if stop==None:stop=len(self.history['loss'])
         plt.figure(figsize=(10,5))
         # losses
         plt.subplot(1,2,1)
