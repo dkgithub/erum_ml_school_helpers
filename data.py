@@ -86,4 +86,4 @@ def load(kind, start_file=0, stop_file=-1):
         labels[start:stop, ...] = data["truth_label"]
         data.close()
 
-    return c_vecs, j_vecs, labels
+    return c_vecs, j_vecs, labels.reshape(-1,1)
