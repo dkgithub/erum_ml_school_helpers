@@ -64,8 +64,8 @@ def plot_roc(labels, predictions, names=None, xlim=(0.01, 1.0), ylim=(1.0, 1.0e2
     names = names or (len(labels) * [""])
     for l, p, n in zip(labels, predictions, names):
         # linearize
-        l = l[:, 1]
-        p = p[:, 1]
+        #l = l[:, 1]
+        #p = p[:, 1]
 
         # create the ROC curve and get the AUC
         fpr, tpr, _ = roc_curve(l, p)
