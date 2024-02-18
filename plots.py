@@ -136,3 +136,36 @@ class history:
         print(f"min train loss {self.history['loss'][minTrain]:5.3f} at ep. {minTrain}")
         print(f"min valid loss {self.history['val_loss'][minValid]:5.3f} at ep. {minValid}")
         print(f"best accurracy {self.history['acc'][maxAcc]:6.2f} at ep. {maxAcc}")
+
+def plotLearningCurvesSkorch(history,start=0,stop=None):
+  """
+  Usage plotLearningCurvesSkorch(history) with skorch net.history object
+        plotLearningCurvesSkorch(history,start)
+        plotLearningCurvesSkorch(history,start,stop)
+
+  """
+  if stop==None:stop=len(history)
+  plt.figure(figsize=(10,5))
+  # losses
+  plt.subplot(1,2,1)
+  plt.plot(history[start:stop,'train_loss'])
+  plt.plot(history[start:stop,'valid_loss'])
+  plt.title('model loss')
+  plt.ylabel('loss')
+  plt.xlabel('epoch')
+  plt.legend(['train','validation'], loc='upper right')
+  # accuracy plot
+  plt.subplot(1,2,2)
+  plt.plot(history[start:stop,'accuracy'])
+  plt.plot(history[start:stop,'valid_acc'])
+  plt.legend(['train','validation'], loc='lower right')
+  plt.title('model accuracy')
+  plt.ylabel('accuracy')
+  plt.xlabel('epoch')
+  plt.show()
+  minValid = np.argmin(history[:,'valid_loss'])
+  minTrain = np.argmin(history[:,'train_loss'])
+  maxAcc   = np.argmax(history[:,'valid_acc'])
+  print(f"min train loss {history[:,'train_loss'][minTrain]:5.3f} at ep. {minTrain}")
+  print(f"min valid loss {history[:,'valid_loss'][minValid]:5.3f} at ep. {minValid}")
+  print(f"best valid accurracy {history[:,'accuracy'][maxAcc]:6.2f} at ep. {maxAcc}")
