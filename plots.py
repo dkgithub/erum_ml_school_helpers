@@ -158,8 +158,8 @@ def plotLearningCurvesSkorch(history,start=0,stop=None):
   # accuracy plot
   ax = plt.subplot(1,2,2)
   ax.set_ylim([50, 95])
-  plt.plot(history[start:stop,'accuracy'])
-  plt.plot(history[start:stop,'valid_acc'])
+  plt.plot(100*history[start:stop,'accuracy'])
+  plt.plot(100*history[start:stop,'valid_acc'])
   plt.legend(['train','validation'], loc='lower right')
   plt.title('model accuracy')
   plt.ylabel('accuracy')
