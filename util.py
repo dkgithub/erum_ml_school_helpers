@@ -8,7 +8,7 @@ import functools
 
 import six
 import numpy as np
-import tensorflow as tf
+#import tensorflow as tf
 from sklearn.metrics import roc_auc_score
 from tqdm.notebook import tqdm
 import wget
