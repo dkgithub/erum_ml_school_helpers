@@ -120,7 +120,8 @@ class history:
         plt.xlabel('epoch')
         plt.legend(['train','validation'], loc='upper right')
         # accuracy plot
-        plt.subplot(1,2,2)
+        ax = plt.subplot(1,2,2)
+        ax.set_ylim([50, 95])
         plt.plot(self.history['acc'])
         if len(self.history)==4:
             plt.plot(self.history['av_acc'])
@@ -155,7 +156,8 @@ def plotLearningCurvesSkorch(history,start=0,stop=None):
   plt.xlabel('epoch')
   plt.legend(['train','validation'], loc='upper right')
   # accuracy plot
-  plt.subplot(1,2,2)
+  ax = plt.subplot(1,2,2)
+  ax.set_ylim([50, 95])
   plt.plot(history[start:stop,'accuracy'])
   plt.plot(history[start:stop,'valid_acc'])
   plt.legend(['train','validation'], loc='lower right')
